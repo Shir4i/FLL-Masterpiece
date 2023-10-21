@@ -13,21 +13,24 @@ class Circle:
 
 mixer.init()
 
-# AQUI VC ADICIONA OS ARQUIVOS DE SOM   
-nota_c = mixer.Sound('C.wav')
-nota_d = mixer.Sound('D.wav')
-nota_e = mixer.Sound('E.wav')
-nota_g = mixer.Sound('G.wav')
+# Carregue seus arquivos de áudio (substitua com seus próprios caminhos de arquivos)
+audio_files = [
+    'C.wav',
+    'D.wav',
+    'E.wav',
+    'G.wav'
+]
 
-# AQUI VC ADICIONA PONTOS
-circles = [Circle(50, 50, False, nota_), 
-           Circle(150, 50, False, nota_), 
-           Circle(250, 50, False, nota_), 
-           Circle(350, 50, False, nota_), 
-           Circle(450, 50, False, nota_), 
-           Circle(590, 50, False, nota_), 
-           Circle(50, 150, False, nota_),
-           Circle(150, 150, False, nota_    ),]
+# Crie uma lista de notas repetindo os arquivos de áudio
+notes = [mixer.Sound(file) for file in audio_files]
+notes *= 176  # Repete os arquivos para corresponder ao número de pontos (176 no total)
+
+circles = []
+for row in range(11):
+    for col in range(16):
+        x = int((col + 1) * 640 // 17)  # Distribuição simétrica em largura
+        y = int((row + 1) * 480 // 12)  # Distribuição simétrica em altura
+        circles.append(Circle(x, y, False, notes.pop(0)))  # Retire a primeira nota da lista de notas
 
 lastPos = -1
 changed = False
@@ -38,8 +41,6 @@ cap = cv2.VideoCapture(0)
 execs = 0
 dist_total = 0
 hand_size_total = 0
-
-# res: 480 x 640
 
 mpHands = mp.solutions.hands
 hands = mpHands.Hands(
