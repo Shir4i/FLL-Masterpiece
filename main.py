@@ -15,10 +15,17 @@ mixer.init()
 
 # Carregue seus arquivos de áudio (substitua com seus próprios caminhos de arquivos)
 audio_files = [
-    'C.wav',
-    'D.wav',
-    'E.wav',
-    'G.wav',
+    'c1.wav',
+    'd1.wav',
+    'e1.wav',
+    'g1.wav',
+    "c2.wav",
+    "d2.wav",
+    "d2.wav",
+    "e2.wav",
+    "c3.wav",
+    "d3.wav",
+    "e3.wav"
 ]
 
 # Crie uma lista de notas repetindo os arquivos de áudio
@@ -95,7 +102,7 @@ while True:
         if execs >= 1:
             if dist_total / hand_size_total >= 1:
                 for index, circle in enumerate(circles):
-                    if abs(index_finger_tip.x * 640 - circle.x) <= 20 and abs(index_finger_tip.y * 480 - circle.y) <= 20:
+                    if abs(index_finger_tip.x * 640 - circle.x) <= 15 and abs(index_finger_tip.y * 480 - circle.y) <= 15:
                         if lastPos != index:
                             circle.checked = not circle.checked
                             lastPos = index
@@ -121,8 +128,8 @@ while True:
                 circle.played = True
                 circle.note.play()
 
-        else:
-            cv2.circle(img, (circle.x, circle.y), 10, (255, 0, 0), 1)
+        # else:
+            # cv2.circle(img, (circle.x, circle.y), 10, (255, 0, 0), 1)
 
     cv2.imshow("Image", cv2.cvtColor(img, cv2.COLOR_RGB2BGR))
 
