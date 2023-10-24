@@ -12,8 +12,6 @@ class Circle:
         self.played = played
 
 mixer.init()
-
-# Carregue seus arquivos de áudio (substitua com seus próprios caminhos de arquivos)
 audio_files = [
     'c1.wav',
     'd1.wav',
@@ -27,32 +25,26 @@ audio_files = [
     "d3.wav",
     "e3.wav"
 ]
-
-# Crie uma lista de notas repetindo os arquivos de áudio
 notes = [mixer.Sound(file) for file in audio_files]
-
-# Define as linhas horizontais e as notas associadas a cada linha
 lines_and_notes = [
-    (1, notes[0]),  # C
-    (2, notes[1]),  # D
-    (3, notes[2]),  # E
-    (4, notes[3]),  # G
-    (5, notes[4]),  # C
-    (6, notes[5]),  # D
-    (7, notes[6]),  # E
-    (8, notes[7]),  # G
-    (9, notes[8]),  # C
-    (10, notes[9]),  # D
-    (11, notes[10]),  # E
+    (1, notes[0]),
+    (2, notes[1]),
+    (3, notes[2]),
+    (4, notes[3]),  
+    (5, notes[4]),
+    (6, notes[5]), 
+    (7, notes[6]),  
+    (8, notes[7]),  
+    (9, notes[8]), 
+    (10, notes[9]),  
+    (11, notes[10]),  
 ]
 
 circles = []
 for row in range(11):
     for col in range(16):
-        x = int((col + 1) * 640 // 17)  # Distribuição simétrica em largura
-        y = int((row + 1) * 480 // 12)  # Distribuição simétrica em altura
-
-        # Encontre a nota associada a esta linha horizontal
+        x = int((col + 1) * 640 // 17)
+        y = int((row + 1) * 480 // 12)
         note = None
         for line, audio_file in lines_and_notes:
             if row == line - 1:
