@@ -21,8 +21,8 @@ audio_files = [
     'g1.wav',
     "c2.wav",
     "d2.wav",
-    "d2.wav",
     "e2.wav",
+    "g3.wav",
     "c3.wav",
     "d3.wav",
     "e3.wav"
@@ -37,13 +37,13 @@ lines_and_notes = [
     (2, notes[1]),  # D
     (3, notes[2]),  # E
     (4, notes[3]),  # G
-    (5, notes[0]),  # C
-    (6, notes[1]),  # D
-    (7, notes[2]),  # E
-    (8, notes[3]),  # G
-    (9, notes[0]),  # C
-    (10, notes[1]),  # D
-    (11, notes[2]),  # E
+    (5, notes[4]),  # C
+    (6, notes[5]),  # D
+    (7, notes[6]),  # E
+    (8, notes[7]),  # G
+    (9, notes[8]),  # C
+    (10, notes[9]),  # D
+    (11, notes[10]),  # E
 ]
 
 circles = []
@@ -102,7 +102,7 @@ while True:
         if execs >= 1:
             if dist_total / hand_size_total >= 1:
                 for index, circle in enumerate(circles):
-                    if abs(index_finger_tip.x * 640 - circle.x) <= 15 and abs(index_finger_tip.y * 480 - circle.y) <= 15:
+                    if abs(index_finger_tip.x * 640 - circle.x) <= 10 and abs(index_finger_tip.y * 480 - circle.y) <= 10:
                         if lastPos != index:
                             circle.checked = not circle.checked
                             lastPos = index
@@ -128,8 +128,8 @@ while True:
                 circle.played = True
                 circle.note.play()
 
-        # else:
-            # cv2.circle(img, (circle.x, circle.y), 10, (255, 0, 0), 1)
+        else:
+            cv2.circle(img, (circle.x, circle.y), 10, (255, 0, 0), 1)
 
     cv2.imshow("Image", cv2.cvtColor(img, cv2.COLOR_RGB2BGR))
 
